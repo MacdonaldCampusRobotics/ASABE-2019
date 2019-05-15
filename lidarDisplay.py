@@ -19,7 +19,7 @@ def displayLap(someLap):
 if plt.get_fignums():
   plt.close("all")
 
-#Ignore little square
+#Close little square for dialogue to show up
 tk=Tkinter.Tk()
 filename = tkFileDialog.askopenfilename()
 
