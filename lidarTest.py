@@ -16,7 +16,7 @@ for i, scan in enumerate(lidar.iter_scans()):
 		break
 
 #print(data)
-pickle.dump(data, open("save5.p", "wb"))
+pickle.dump(data, open("save6.p", "wb"))
 
 lidar.stop()
 lidar.stop_motor()

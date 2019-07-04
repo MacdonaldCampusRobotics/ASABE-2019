@@ -3,10 +3,13 @@
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 
-uint8_t servoFL = 12;
-uint8_t servoFR = 13;
-uint8_t servoBL = 14;
-uint8_t servoBR = 15;
+const uint8_t servoGripper = 0;
+const uint8_t servoValve = 3;
+
+const uint8_t servoFL = 12;
+const uint8_t servoFR = 13;
+const uint8_t servoBL = 14;
+const uint8_t servoBR = 15;
 
 /*
    Front left

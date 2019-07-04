@@ -3,8 +3,8 @@
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 
-const uint8_t servoGripper = 0;
-const uint8_t servoValve = 3;
+const uint8_t servoGripper = 3;
+const uint8_t servoValve = 0;
 
 uint8_t servoFL = 12;
 uint8_t servoFR = 13;
@@ -37,12 +37,20 @@ const int midPointFL = 372;
 const int midPointFR = 370;
 const int midPointBL = 376;
 const int midPointBR = 371;
+const int opengripper = 130;
+const int closegripper = 190;
+const int openball = 260;
+const int closeball= 470;
 
 const char MOVE_FORWARD = 'w';
 const char MOVE_BACK = 's';
 const char MOVE_LEFT = 'a';
 const char MOVE_RIGHT = 'd';
 const char FULL_STOP = 'e';
+const char OPEN_GRIPPER = 'b';
+const char CLOSE_GRIPPER = 'c';
+const char OPEN_BALL = 'f';
+const char CLOSE_BALL = 'h';
 
 String message = " ";
 char initial = ' ';
@@ -106,32 +114,56 @@ void loop() {
         pwm.setPWM(servoFL, 0, midPointFL+neutralSpeed);
         Serial.println("move right");
         break;
+      //press b to open gripper
+      case OPEN_GRIPPER: 
+        pwm.setPWM(servoGripper, 0, opengripper);
+        Serial.println("open gripper");
+        break;
+      //press c to close gripper 
+      case CLOSE_GRIPPER:
+        pwm.setPWM(servoGripper, 0, closegripper);
+        Serial.println("close gripper");
+        break;
+      //press f to open ball 
+      case OPEN_BALL:      
+        pwm.setPWM(servoValve, 0, openball);
+        Serial.println("open ball");
+        break;
+      //press b to close ball
+      case CLOSE_BALL:
+        pwm.setPWM(servoValve, 0, closeball);
+        Serial.println("close ball");
+        break; 
       // press e to default stop
       case FULL_STOP:
         stopAll();
         Serial.println("full stop");
         break;
-      // press t to test just back left motor
+      // press t to test just front left motor
       case 't':
         testedValue = getNumber(message);
         pwm.setPWM(servoFL, 0, testedValue);
         Serial.println("tried " + String(testedValue));
         break;
+      // press u to test just the front right motor
       case 'u':
         testedValue = getNumber(message);
         pwm.setPWM(servoFR, 0, testedValue);
         Serial.println("tried " + String(testedValue));
         break;
+      // press g to test just the back left motor
       case 'g':
         testedValue = getNumber(message);
         pwm.setPWM(servoBL, 0, testedValue);
         Serial.println("tried " + String(testedValue));
         break;
+      // press j to test the back right motor
       case 'j':
         testedValue = getNumber(message);
         pwm.setPWM(servoBR, 0, testedValue);
         Serial.println("tried " + String(testedValue));
         break;
+      // press p to stop all
       case 'p':
         stopAll();
         Serial.println("finished");

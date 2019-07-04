@@ -7,7 +7,7 @@ import cv2 as cv
 import numpy as np
 
 # Video capture
-cap = cv.VideoCapture(0)
+cap = cv.VideoCapture(1)
 
 while(True):
     # video to image
